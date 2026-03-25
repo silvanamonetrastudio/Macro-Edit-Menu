@@ -17,13 +17,13 @@ body{font-family:'Poppins',sans-serif;background:#f3e2d2;color:#1c1c1c;min-heigh
 .hdr p{font-size:12px;color:#f3e2d2;opacity:.85;font-weight:300;line-height:1.7;}
 .card{background:#fff;border-radius:14px;padding:26px 28px;box-shadow:0 4px 24px rgba(92,42,87,.08);margin-bottom:16px;}
 .ctitle{font-size:10px;font-weight:700;color:#5c2a57;text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px;}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
 .lbl{font-size:10px;font-weight:700;color:#3a3a3a;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;display:block;}
 input[type=number]{width:100%;padding:10px 14px;border-radius:8px;border:1.5px solid #e0d0ea;font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:#5c2a57;background:#fffaf6;outline:none;text-align:center;}
 input[type=number]:focus{border-color:#a895bf;}
 .btn{width:100%;padding:14px;border-radius:30px;background:#5c2a57;color:#fff;border:none;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:'Poppins',sans-serif;}
 .btn:hover{background:#4a2145;}
-.btn-print{width:100%;padding:12px;border-radius:30px;background:transparent;color:#5c2a57;border:2px solid #5c2a57;font-size:12px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;margin-top:10px;}
+.btn-outline{width:100%;padding:12px;border-radius:30px;background:transparent;color:#5c2a57;border:2px solid #5c2a57;font-size:12px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;margin-top:10px;}
 .macro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
 .macro-box{background:#f3e2d2;border-radius:10px;padding:12px 6px;text-align:center;}
 .macro-val{font-size:22px;font-weight:700;}
@@ -31,13 +31,12 @@ input[type=number]:focus{border-color:#a895bf;}
 .macro-unit{font-size:10px;color:#8fa4b6;}
 .water{text-align:center;font-size:11px;color:#8fa4b6;margin-top:8px;}
 .water strong{color:#5c2a57;}
-.tabs{display:flex;gap:8px;margin-bottom:16px;}
-.tab{flex:1;padding:10px;border-radius:10px;background:#fff;border:2px solid #e0d0ea;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:#3a3a3a;cursor:pointer;text-align:center;text-transform:uppercase;letter-spacing:.06em;}
-.tab.on{background:#5c2a57;border-color:#5c2a57;color:#fff;}
-.panel{display:none;}
-.panel.on{display:block;}
-.day-label{background:#5c2a57;color:#fff;border-radius:10px;padding:10px 18px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;display:block;text-align:center;}
-.meal{background:#fff;border-radius:14px;padding:18px 20px;margin-bottom:12px;box-shadow:0 2px 12px rgba(92,42,87,.05);}
+.day-tabs{display:flex;gap:8px;margin-bottom:16px;}
+.day-tab{flex:1;padding:10px;border-radius:10px;background:#fff;border:2px solid #e0d0ea;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:#3a3a3a;cursor:pointer;text-align:center;text-transform:uppercase;letter-spacing:.06em;}
+.day-tab.active{background:#5c2a57;border-color:#5c2a57;color:#fff;}
+.day-panel{display:none;}
+.day-panel.active{display:block;}
+.meal{background:#fff;border-radius:14px;padding:20px 24px;margin-bottom:12px;box-shadow:0 2px 12px rgba(92,42,87,.05);}
 .meal-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
 .meal-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1c1c1c;}
 .meal-recipe{font-size:11px;color:#a895bf;font-style:italic;margin-top:3px;}
@@ -48,18 +47,18 @@ thead th{text-align:left;font-size:9px;font-weight:700;color:#8fa4b6;text-transf
 tbody td{padding:8px;border-bottom:1px solid #f3e2d2;vertical-align:middle;}
 .td-food{color:#1c1c1c;font-weight:500;}
 .td-amt{color:#5c2a57;font-weight:700;white-space:nowrap;}
+.td-unit{color:#8fa4b6;font-size:10px;}
 .td-note{color:#bbb;font-size:10px;font-style:italic;}
 .callout{background:#5c2a57;border-radius:12px;padding:18px 22px;margin-bottom:16px;}
 .callout p{font-size:11px;color:#f3e2d2;line-height:1.7;}
 .callout strong{color:#d8a7b1;font-weight:700;display:block;margin-bottom:4px;}
-.brand{text-align:center;margin-top:10px;font-size:10px;color:#8fa4b6;}
 .hidden{display:none;}
 .footer{text-align:center;margin-top:20px;font-size:10px;color:#3a3a3a;letter-spacing:.06em;padding-bottom:20px;}
 @media print{
-  .input-section,.btn,.btn-print,.tabs,.footer{display:none !important;}
+  .input-section,.btn,.btn-outline,.day-tabs,.footer{display:none !important;}
   body{background:#fff;padding:0;}
   .meal,.card{box-shadow:none;border:1px solid #eee;}
-  .panel{display:block !important;}
+  .day-panel{display:block !important;}
 }
 </style>
 </head>
@@ -69,280 +68,320 @@ tbody td{padding:8px;border-bottom:1px solid #f3e2d2;vertical-align:middle;}
     <div class="hdr-tag">THE | MACRO | EDIT</div>
     <h1>Your <span>Personalized</span><br>Daily Menu</h1>
     <div class="hdr-line"></div>
-    <p>Enter your macro numbers from your calculator. Your 3-day sample menu with exact portions will appear below.</p>
+    <p>Enter your 4 macro numbers from your calculator plus your body weight. Your 3-day menu with exact portions will appear below.</p>
   </div>
+
   <div class="card input-section">
-    <div class="ctitle">Your Daily Macros</div>
+    <div class="ctitle">Enter Your Daily Macros</div>
     <div class="grid2">
-      <div><label class="lbl">Calories (kcal)</label><input type="number" id="f-cal" value="1769"/></div>
-      <div><label class="lbl">Protein (g)</label><input type="number" id="f-pro" value="150"/></div>
-      <div><label class="lbl">Carbs (g)</label><input type="number" id="f-carb" value="173"/></div>
-      <div><label class="lbl">Fat (g)</label><input type="number" id="f-fat" value="53"/></div>
-      <div style="grid-column:1/-1"><label class="lbl">Body Weight (lbs)</label><input type="number" id="f-lbs" value="150"/></div>
+      <div><label class="lbl">Calories (kcal)</label><input type="number" id="cal" value="1769" oninput="build()"/></div>
+      <div><label class="lbl">Protein (g)</label><input type="number" id="pro" value="150" oninput="build()"/></div>
+      <div><label class="lbl">Carbs (g)</label><input type="number" id="carb" value="173" oninput="build()"/></div>
+      <div><label class="lbl">Fat (g)</label><input type="number" id="fat" value="53" oninput="build()"/></div>
+      <div style="grid-column:1/-1"><label class="lbl">Body Weight (lbs)</label><input type="number" id="wlbs" value="150" oninput="build()"/></div>
     </div>
-    <button class="btn" onclick="buildMenu()">Build My Menu</button>
+    <button class="btn" onclick="build()">Build My Menu</button>
   </div>
-  <div id="out" class="hidden"></div>
+
+  <div id="menu-out" class="hidden"></div>
   <div class="footer">THE | MACRO | EDIT &nbsp; allfitnessbylexi@gmail.com &nbsp; @the_macro_edit</div>
 </div>
 
 <script>
-function showDay(n) {
-  var tabs = document.querySelectorAll('.tab');
-  var panels = document.querySelectorAll('.panel');
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].classList.toggle('on', i === n - 1);
-    panels[i].classList.toggle('on', i === n - 1);
-  }
+// Round to nearest 5, minimum 0
+function r5(n) { return Math.max(0, Math.round(n / 5) * 5); }
+
+// How many grams of food X needed to hit targetP grams of protein
+// given food has protPer100g protein per 100g, capped at maxG
+function proG(targetP, protPer100g, maxG) {
+  return Math.min(r5(Math.max(0, targetP) / protPer100g * 100), maxG);
 }
 
-function g(val, lo, hi) {
-  // clamp to nearest 5g, between lo and hi
-  return Math.round(Math.min(Math.max(val, lo), hi) / 5) * 5;
+// How many grams of food X needed to hit targetC grams of carbs
+// given food has carbPer100g carbs per 100g, capped at maxG
+function carbG(targetC, carbPer100g, maxG) {
+  return Math.min(r5(Math.max(0, targetC) / carbPer100g * 100), maxG);
 }
 
-function buildMenu() {
-  var cal  = parseFloat(document.getElementById('f-cal').value)  || 0;
-  var pro  = parseFloat(document.getElementById('f-pro').value)  || 0;
-  var carb = parseFloat(document.getElementById('f-carb').value) || 0;
-  var fat  = parseFloat(document.getElementById('f-fat').value)  || 0;
-  var lbs  = parseFloat(document.getElementById('f-lbs').value)  || 150;
+// How many grams of food X needed to hit targetF grams of fat
+function fatG(targetF, fatPer100g, maxG) {
+  return Math.min(r5(Math.max(0, targetF) / fatPer100g * 100), maxG);
+}
 
-  if (!cal || !pro || !carb || !fat) {
-    alert('Please fill in all macro fields.');
-    return;
-  }
+function build() {
+  var cal  = parseFloat(document.getElementById('cal').value)  || 0;
+  var pro  = parseFloat(document.getElementById('pro').value)  || 0;
+  var carb = parseFloat(document.getElementById('carb').value) || 0;
+  var fat  = parseFloat(document.getElementById('fat').value)  || 0;
+  var wlbs = parseFloat(document.getElementById('wlbs').value) || 150;
+  if (!cal || !pro || !carb || !fat) return;
 
-  var water   = Math.round(lbs / 2);
-  var waterMl = Math.round(water * 29.5);
+  var water = Math.round(wlbs / 2);
 
-  // Per-meal protein targets
-  var bP  = Math.round(pro * 0.25); // breakfast
-  var s1P = Math.round(pro * 0.10); // snack 1
-  var lP  = Math.round(pro * 0.30); // lunch
-  var s2P = Math.round(pro * 0.10); // snack 2
-  var dP  = Math.round(pro * 0.25); // dinner
+  // Meal targets as % of daily totals
+  var bP  = Math.round(pro  * 0.25); var bC  = Math.round(carb * 0.25); var bF  = Math.round(fat * 0.20);
+  var s1P = Math.round(pro  * 0.10); var s1C = Math.round(carb * 0.10); var s1F = Math.round(fat * 0.10);
+  var lP  = Math.round(pro  * 0.30); var lC  = Math.round(carb * 0.30); var lF  = Math.round(fat * 0.25);
+  var s2P = Math.round(pro  * 0.10); var s2C = Math.round(carb * 0.10); var s2F = Math.round(fat * 0.10);
+  var dP  = Math.round(pro  * 0.25); var dC  = Math.round(carb * 0.25); var dF  = Math.round(fat * 0.25);
 
-  // BREAKFAST
-  // Fixed: 2 eggs = 12g, oats 60g = 7g → total fixed = 19g
-  // Egg whites fill the rest, max 120g
-  var ewG = g(Math.max(0, (bP - 19) / 0.12 * 100), 0, 120);
+  // ── BREAKFAST shared calculations ──────────────────────
+  // 2 whole eggs = fixed: 12g protein, 0g carbs, 10g fat
+  // Egg whites fill remaining breakfast protein (max 180g = ~6 whites)
+  var ewG  = proG(bP - 12, 0.12, 180);
+  // Oats fill 70% of breakfast carbs (max 80g dry)
+  var oatsG = carbG(bC * 0.7, 0.65, 80);
 
-  // SNACK 1 — yogurt 170g = 17g fixed. Cottage cheese scales for Day 2.
-  var cotG = g(s1P / 0.11 * 100, 100, 200);
+  // ── DAY 1 ──────────────────────────────────────────────
+  // LUNCH D1: chicken fills protein minus ~3g from veggies. Rice fills carbs. Avocado fills fat.
+  var d1lCkG  = proG(lP - 3, 0.31, 200);
+  var d1lRiG  = carbG(lC, 0.28, 200);
+  var d1lAvG  = fatG(lF * 0.6, 0.15, 80);
+  var d1lOiG  = fatG(lF * 0.3, 0.45, 15);
+  // DINNER D1: salmon fills protein minus ~2g. Sweet potato fills carbs. Olive oil fills fat.
+  var d1dSaG  = proG(dP - 2, 0.20, 180);
+  var d1dSpG  = carbG(dC, 0.20, 200);
+  var d1dOiG  = fatG(dF * 0.5, 0.45, 15);
 
-  // SNACK 1 Day 3 — tuna, max 1 small can 140g
-  var tunaG = g(s1P / 0.25 * 100, 80, 140);
+  // ── DAY 2 ──────────────────────────────────────────────
+  // BREAKFAST D2: Kodiak fills carbs. Egg whites fill protein (minus 2 eggs=12g, Kodiak~12g).
+  var d2bKoG  = carbG(bC * 0.7, 0.62, 80);
+  var d2bEwG  = proG(bP - 12 - Math.round(d2bKoG * 0.12), 0.12, 180);
+  // SNACK1 D2: cottage cheese fills protein
+  var d2s1CoG = proG(s1P, 0.11, 200);
+  // LUNCH D2: turkey fills protein minus ~5g beans. Rice fills 60% carbs. Beans fill 30%.
+  var d2lTkG  = proG(lP - 5, 0.27, 200);
+  var d2lRiG  = carbG(lC * 0.6, 0.28, 180);
+  var d2lBeG  = carbG(lC * 0.3, 0.21, 100);
+  var d2lAvG  = fatG(lF * 0.6, 0.15, 80);
+  // DINNER D2: turkey fills protein. Potatoes fill carbs.
+  var d2dTkG  = proG(dP - 2, 0.27, 200);
+  var d2dPoG  = carbG(dC, 0.17, 200);
+  var d2dOiG  = fatG(dF * 0.5, 0.45, 15);
 
-  // LUNCH — main protein scales, subtract ~5g from sides
-  var ckG  = g((lP - 5) / 0.31 * 100, 120, 200); // chicken
-  var tkG  = g((lP - 5) / 0.27 * 100, 120, 200); // turkey
-  var shG  = g((lP - 5) / 0.24 * 100, 120, 200); // shrimp
+  // ── DAY 3 ──────────────────────────────────────────────
+  // BREAKFAST D3: oats + protein powder (25g) + Fairlife (13g) + 2 eggs (12g) = 50g fixed protein
+  // If bP > 50, note it. Oats fill carbs.
+  var d3bOaG  = carbG(bC * 0.6, 0.65, 80);
+  // SNACK1 D3: tuna fills protein
+  var d3s1TuG = proG(s1P, 0.25, 140);
+  var d3s1RcN = Math.max(1, Math.min(4, Math.round(s1C / 7)));
+  // LUNCH D3: shrimp fills protein. Quinoa fills carbs.
+  var d3lShG  = proG(lP - 5, 0.24, 200);
+  var d3lQuG  = carbG(lC, 0.21, 200);
+  var d3lOiG  = fatG(lF * 0.5, 0.45, 15);
+  // SNACK2 D3: fixed (yogurt 120g = 12g + bar = 21g)
+  // DINNER D3: chicken thighs fill protein. Brown rice fills carbs.
+  var d3dThG  = proG(dP - 2, 0.19, 200);
+  var d3dBrG  = carbG(dC, 0.23, 200);
+  var d3dOiG  = fatG(dF * 0.5, 0.45, 15);
 
-  // DINNER — main protein scales, subtract ~3g from sides
-  var salG = g((dP - 3) / 0.20 * 100, 120, 180); // salmon
-  var tdG  = g((dP - 3) / 0.27 * 100, 110, 190); // turkey dinner
-  var thG  = g((dP - 3) / 0.19 * 100, 120, 200); // thighs
+  // ── SNACK 2 shared ──────────────────────────────────────
+  // Protein shake: 1 scoop (25g P) + Fairlife 240ml (13g P) = 38g fixed
+  // Rice cakes for Day 2 snack
+  var s2RcN = Math.max(1, Math.min(4, Math.round(s2C / 7)));
 
-  var days = [
-    { label: "Day 1", meals: [
-      { title: "BREAKFAST", recipe: "Protein Omelet + Oatmeal with Berries",
-        p: bP, c: 51, f: 12,
-        rows: [
-          ["Whole eggs",             "2 eggs",           "~12g protein, ~10g fat"],
-          ["Liquid egg whites",      ewG + "g",          "~12g protein per 100g"],
-          ["Old-fashioned oats, dry","60g",              "~39g carbs, ~7g protein"],
-          ["Mixed berries",          "1 cup (~150g)",    "~12g carbs — no need to weigh"],
-          ["Cooking spray",          "as needed",        "for the omelet"],
-          ["Salt, pepper, spices",   "to taste",         ""]
-        ]
-      },
-      { title: "SNACK 1", recipe: "Greek Yogurt Parfait",
-        p: s1P, c: 24, f: 3,
-        rows: [
-          ["Nonfat plain Greek yogurt","170g",           "~17g protein"],
-          ["High-protein granola",    "30g",             "~18g carbs"],
-          ["Mixed berries",           "1/2 cup (~75g)",  "~6g carbs"],
-          ["Honey or sugar-free syrup","1 tsp",          "optional"]
-        ]
-      },
-      { title: "LUNCH", recipe: "Chicken Rice Bowl + Veggies + Avocado",
-        p: lP, c: 49, f: 9,
-        rows: [
-          ["Chicken breast, cooked", ckG + "g",          "31g protein per 100g"],
-          ["White rice, cooked",     "150g",             "~42g carbs"],
-          ["Broccoli or veggies",    "1 cup (~150g)",    "free food — fiber"],
-          ["Avocado",                "50g",              "~7g fat"],
-          ["Lemon, salsa, spices",   "to taste",         ""]
-        ]
-      },
-      { title: "SNACK 2", recipe: "Protein Shake + Banana",
-        p: s2P, c: 39, f: 3,
-        rows: [
-          ["Protein powder",         "1 scoop (30g)",    "~25g protein"],
-          ["Fairlife low-fat milk",  "1 cup (240ml)",    "~13g protein, ~12g carbs"],
-          ["Banana",                 "1 medium (~120g)", "~27g carbs — no need to weigh"]
-        ]
-      },
-      { title: "DINNER", recipe: "Salmon + Sweet Potato + Salad",
-        p: dP, c: 31, f: 6,
-        rows: [
-          ["Salmon fillet, raw",     salG + "g",         "~20g protein per 100g raw"],
-          ["Sweet potato, cooked",   "150g",             "~30g carbs"],
-          ["Mixed salad greens",     "2 cups (~80g)",    "free food — fiber"],
-          ["Olive oil",              "1 tsp (5g)",       "~5g fat — measure carefully"],
-          ["Garlic, lemon, herbs",   "to taste",         ""]
-        ]
-      }
-    ]},
-    { label: "Day 2", meals: [
-      { title: "BREAKFAST", recipe: "Protein Pancakes + Scrambled Eggs",
-        p: bP, c: 49, f: 12,
-        rows: [
-          ["Kodiak pancake mix, dry","60g",              "~38g carbs, ~12g protein"],
-          ["Liquid egg whites",      ewG + "g",          "~12g protein per 100g"],
-          ["Whole eggs",             "2 eggs",           "~12g protein, ~10g fat — scrambled on side"],
-          ["Fresh strawberries",     "1 cup (~150g)",    "~11g carbs — no need to weigh"],
-          ["Sugar-free syrup",       "to taste",         ""],
-          ["Cooking spray",          "as needed",        ""]
-        ]
-      },
-      { title: "SNACK 1", recipe: "Cottage Cheese + Fruit",
-        p: s1P, c: 15, f: 2,
-        rows: [
-          ["Low-fat cottage cheese", cotG + "g",         "~11g protein per 100g"],
-          ["Pineapple chunks",       "1/2 cup (~80g)",   "~11g carbs — no need to weigh"],
-          ["Cinnamon",               "to taste",         "optional"]
-        ]
-      },
-      { title: "LUNCH", recipe: "Ground Turkey Taco Bowl",
-        p: lP, c: 52, f: 9,
-        rows: [
-          ["93% lean ground turkey, cooked", tkG + "g", "~27g protein per 100g"],
-          ["White rice, cooked",     "130g",             "~36g carbs"],
-          ["Black beans, drained",   "60g",              "~9g carbs, ~5g protein"],
-          ["Salsa",                  "2 tbsp (~30g)",    "low calorie"],
-          ["Avocado",                "50g",              "~7g fat"],
-          ["Taco seasoning",         "to taste",         ""]
-        ]
-      },
-      { title: "SNACK 2", recipe: "Fairlife Shake + Rice Cakes",
-        p: s2P, c: 23, f: 3,
-        rows: [
-          ["Fairlife protein shake", "1 bottle (340ml)", "30g protein"],
-          ["Plain rice cakes",       "2 cakes",          "~14g carbs"],
-          ["PB2 peanut butter powder","1 tbsp (12g)",    "~4g protein, ~3g fat"]
-        ]
-      },
-      { title: "DINNER", recipe: "Ground Turkey + Baby Potatoes + Zucchini",
-        p: dP, c: 28, f: 7,
-        rows: [
-          ["93% lean ground turkey, raw", tdG + "g",    "~27g protein per 100g raw"],
-          ["Baby potatoes, boiled",  "150g",             "~26g carbs"],
-          ["Zucchini, sauteed",      "1 medium (~150g)", "free food — fiber"],
-          ["Olive oil",              "1 tsp (5g)",       "~5g fat — measure carefully"],
-          ["Garlic, Italian seasoning","to taste",       ""]
-        ]
-      }
-    ]},
-    { label: "Day 3", meals: [
-      { title: "BREAKFAST", recipe: "Chocolate Overnight Oats + Hard Boiled Eggs",
-        p: bP, c: 62, f: 13,
-        rows: [
-          ["Old-fashioned oats, dry","60g",              "~39g carbs, ~7g protein"],
-          ["Chocolate protein powder","1 scoop (30g)",   "~25g protein"],
-          ["Fairlife low-fat milk",  "1 cup (240ml)",    "mix into oats overnight — ~13g protein"],
-          ["Hard boiled eggs",       "2 eggs",           "~12g protein, ~10g fat"],
-          ["Blueberries",            "1/2 cup (~75g)",   "~11g carbs — no need to weigh"],
-          ["Chia seeds",             "1 tsp (~5g)",      "fiber and omega-3"]
-        ]
-      },
-      { title: "SNACK 1", recipe: "Tuna + Rice Cakes",
-        p: s1P, c: 15, f: 2,
-        rows: [
-          ["Canned tuna in water, drained", tunaG + "g","~25g protein per 100g"],
-          ["Plain rice cakes",       "2 cakes",          "~14g carbs"],
-          ["Nonfat Greek yogurt",    "2 tbsp (~30g)",    "mix with tuna as dressing"],
-          ["Hot sauce or mustard",   "to taste",         ""]
-        ]
-      },
-      { title: "LUNCH", recipe: "Shrimp + Quinoa + Roasted Peppers",
-        p: lP, c: 25, f: 6,
-        rows: [
-          ["Shrimp, cooked",         shG + "g",          "~24g protein per 100g"],
-          ["Quinoa, cooked",         "150g",             "~24g carbs, ~5g protein"],
-          ["Bell peppers, roasted",  "1 large (~150g)",  "free food — vitamin C"],
-          ["Olive oil",              "1 tsp (5g)",       "~5g fat — measure carefully"],
-          ["Lemon, garlic, paprika", "to taste",         ""]
-        ]
-      },
-      { title: "SNACK 2", recipe: "Greek Yogurt + Protein Bar",
-        p: s2P, c: 25, f: 5,
-        rows: [
-          ["Nonfat plain Greek yogurt","120g",           "~12g protein"],
-          ["Quest protein bar",      "1 bar",            "~21g protein, ~22g carbs"],
-          ["Berries",                "handful",          "optional topping"]
-        ]
-      },
-      { title: "DINNER", recipe: "Chicken Thighs + Brown Rice + Broccoli",
-        p: dP, c: 36, f: 6,
-        rows: [
-          ["Chicken thighs, skinless raw", thG + "g",   "~19g protein per 100g raw"],
-          ["Brown rice, cooked",     "150g",             "~35g carbs"],
-          ["Broccoli, roasted",      "1.5 cups (~150g)", "free food — fiber"],
-          ["Olive oil",              "1 tsp (5g)",       "~5g fat — measure carefully"],
-          ["Soy sauce, garlic, ginger","to taste",       ""]
-        ]
-      }
-    ]}
+  var day1 = [
+    { title:"BREAKFAST", recipe:"Protein Omelet + Oatmeal with Berries",
+      cal:Math.round(cal*0.25), p:bP, c:bC, f:bF,
+      rows:[
+        ["Whole eggs",             "2",               "eggs","~12g protein, ~10g fat"],
+        ["Liquid egg whites",      ewG+"",            "g",   "~12g protein per 100g"],
+        ["Old-fashioned oats, dry",oatsG+"",          "g",   "~65g carbs per 100g"],
+        ["Mixed berries",          "1 cup (~150g)",   "",    "~12g carbs — no need to weigh"],
+        ["Cooking spray",          "as needed",       "",    "for the omelet"],
+        ["Salt, pepper, spices",   "to taste",        "",    ""]
+      ]
+    },
+    { title:"SNACK 1", recipe:"Greek Yogurt Parfait",
+      cal:Math.round(cal*0.10), p:s1P, c:s1C, f:s1F,
+      rows:[
+        ["Nonfat plain Greek yogurt","170",           "g",  "~17g protein"],
+        ["High-protein granola",     carbG(s1C*0.6,0.60,50)+"","g","~60g carbs per 100g"],
+        ["Honey or sugar-free syrup","1 tsp",         "",   "optional"]
+      ]
+    },
+    { title:"LUNCH", recipe:"Chicken Rice Bowl + Veggies + Avocado",
+      cal:Math.round(cal*0.30), p:lP, c:lC, f:lF,
+      rows:[
+        ["Chicken breast, cooked",     d1lCkG+"",   "g","31g protein per 100g"],
+        ["White rice, cooked",         d1lRiG+"",   "g","28g carbs per 100g"],
+        ["Broccoli or steamed veggies","1 cup (~150g)","","free food — fiber"],
+        ["Avocado",                    d1lAvG+"",   "g","15g fat per 100g"],
+        ["Olive oil, measured",        d1lOiG+"",   "g","measure carefully"],
+        ["Lemon, salsa, spices",       "to taste",  "", ""]
+      ]
+    },
+    { title:"SNACK 2", recipe:"Protein Shake + Banana",
+      cal:Math.round(cal*0.10), p:s2P, c:s2C, f:s2F,
+      rows:[
+        ["Protein powder",        "1 scoop (~30g)",   "","~25g protein"],
+        ["Fairlife low-fat milk", "1 cup (240ml)",    "","~13g protein"],
+        ["Banana",                "1 medium (~120g)", "","~27g carbs — no need to weigh"]
+      ]
+    },
+    { title:"DINNER", recipe:"Salmon + Sweet Potato + Salad",
+      cal:Math.round(cal*0.25), p:dP, c:dC, f:dF,
+      rows:[
+        ["Salmon fillet, raw",   d1dSaG+"", "g","~20g protein per 100g raw"],
+        ["Sweet potato, cooked", d1dSpG+"", "g","~20g carbs per 100g"],
+        ["Mixed salad greens",   "2 cups (~80g)","","free food — fiber"],
+        ["Olive oil, measured",  d1dOiG+"", "g","measure carefully"],
+        ["Garlic, lemon, herbs", "to taste","", ""]
+      ]
+    }
   ];
 
-  // RENDER
-  var html = '';
-  html += '<div class="card"><div class="ctitle">Your Daily Targets</div><div class="macro-grid">';
-  html += '<div class="macro-box"><div class="macro-val" style="color:#5c2a57">' + cal + '</div><div class="macro-lbl">Calories</div><div class="macro-unit">kcal</div></div>';
-  html += '<div class="macro-box"><div class="macro-val" style="color:#a895bf">' + pro + '</div><div class="macro-lbl">Protein</div><div class="macro-unit">g</div></div>';
-  html += '<div class="macro-box"><div class="macro-val" style="color:#8fa4b6">' + carb + '</div><div class="macro-lbl">Carbs</div><div class="macro-unit">g</div></div>';
-  html += '<div class="macro-box"><div class="macro-val" style="color:#d8a7b1">' + fat + '</div><div class="macro-lbl">Fat</div><div class="macro-unit">g</div></div>';
-  html += '</div><div class="water">Daily water goal: <strong>' + water + ' oz</strong> (' + waterMl + ' ml) minimum</div></div>';
-
-  html += '<div class="tabs">';
-  for (var d = 0; d < days.length; d++) {
-    html += '<button class="tab' + (d === 0 ? ' on' : '') + '" onclick="showDay(' + (d + 1) + ')">Day ' + (d + 1) + '</button>';
-  }
-  html += '</div>';
-
-  for (var d = 0; d < days.length; d++) {
-    var day = days[d];
-    html += '<div class="panel' + (d === 0 ? ' on' : '') + '">';
-    html += '<div class="day-label">' + day.label + '</div>';
-    for (var m = 0; m < day.meals.length; m++) {
-      var meal = day.meals[m];
-      var mcal = Math.round(meal.p * 4 + meal.c * 4 + meal.f * 9);
-      html += '<div class="meal"><div class="meal-head"><div>';
-      html += '<div class="meal-title">' + meal.title + '</div>';
-      html += '<div class="meal-recipe">' + meal.recipe + '</div>';
-      html += '</div><div class="meal-macros"><strong>~' + mcal + ' kcal</strong>';
-      html += 'P: ~' + meal.p + 'g &nbsp; C: ~' + meal.c + 'g &nbsp; F: ~' + meal.f + 'g</div></div>';
-      html += '<table><thead><tr><th>Ingredient</th><th>Amount</th><th>Note</th></tr></thead><tbody>';
-      for (var r = 0; r < meal.rows.length; r++) {
-        var row = meal.rows[r];
-        html += '<tr><td class="td-food">' + row[0] + '</td>';
-        html += '<td class="td-amt">' + row[1] + '</td>';
-        html += '<td class="td-note">' + row[2] + '</td></tr>';
-      }
-      html += '</tbody></table></div>';
+  var day2 = [
+    { title:"BREAKFAST", recipe:"Protein Pancakes + Scrambled Eggs",
+      cal:Math.round(cal*0.25), p:bP, c:bC, f:bF,
+      rows:[
+        ["Kodiak pancake mix, dry",d2bKoG+"",         "g",    "~62g carbs, ~12g protein per 100g"],
+        ["Liquid egg whites",      d2bEwG+"",          "g",    "~12g protein per 100g"],
+        ["Whole eggs",             "2",                "eggs", "~12g protein, ~10g fat — scrambled on side"],
+        ["Fresh strawberries",     "1 cup (~150g)",    "",     "~11g carbs — no need to weigh"],
+        ["Sugar-free syrup",       "to taste",         "",     ""],
+        ["Cooking spray",          "as needed",        "",     ""]
+      ]
+    },
+    { title:"SNACK 1", recipe:"Cottage Cheese + Fruit",
+      cal:Math.round(cal*0.10), p:s1P, c:s1C, f:s1F,
+      rows:[
+        ["Low-fat cottage cheese", d2s1CoG+"","g","~11g protein per 100g"],
+        ["Pineapple chunks",       "1/2 cup (~80g)","","~11g carbs — no need to weigh"],
+        ["Cinnamon",               "to taste",      "","optional"]
+      ]
+    },
+    { title:"LUNCH", recipe:"Ground Turkey Taco Bowl",
+      cal:Math.round(cal*0.30), p:lP, c:lC, f:lF,
+      rows:[
+        ["93% lean ground turkey, cooked",d2lTkG+"","g","~27g protein per 100g"],
+        ["White rice, cooked",            d2lRiG+"","g","~28g carbs per 100g"],
+        ["Black beans, drained",          d2lBeG+"","g","~21g carbs per 100g"],
+        ["Salsa",                         "2 tbsp", "","low calorie"],
+        ["Avocado",                       d2lAvG+"","g","~15g fat per 100g"],
+        ["Taco seasoning",                "to taste","",""]
+      ]
+    },
+    { title:"SNACK 2", recipe:"Fairlife Shake + Rice Cakes",
+      cal:Math.round(cal*0.10), p:s2P, c:s2C, f:s2F,
+      rows:[
+        ["Fairlife protein shake",     "1 bottle (340ml)","","~30g protein"],
+        ["Plain rice cakes",           s2RcN+" ",         "cakes","~7g carbs each"],
+        ["PB2 powdered peanut butter", "1 tbsp (~12g)",   "","mix with water to spread"]
+      ]
+    },
+    { title:"DINNER", recipe:"Ground Turkey + Baby Potatoes + Zucchini",
+      cal:Math.round(cal*0.25), p:dP, c:dC, f:dF,
+      rows:[
+        ["93% lean ground turkey, raw",d2dTkG+"","g","~27g protein per 100g raw"],
+        ["Baby potatoes, boiled",      d2dPoG+"","g","~17g carbs per 100g"],
+        ["Zucchini, sauteed",          "1 medium (~150g)","","free food — fiber"],
+        ["Olive oil, measured",        d2dOiG+"","g","measure carefully"],
+        ["Garlic, Italian seasoning",  "to taste",       "",""]
+      ]
     }
-    html += '</div>';
+  ];
+
+  var day3 = [
+    { title:"BREAKFAST", recipe:"Chocolate Overnight Oats + Hard Boiled Eggs",
+      cal:Math.round(cal*0.25), p:bP, c:bC, f:bF,
+      rows:[
+        ["Old-fashioned oats, dry",  d3bOaG+"",        "g",    "~65g carbs per 100g"],
+        ["Chocolate protein powder", "1 scoop (~30g)", "",     "~25g protein"],
+        ["Fairlife low-fat milk",    "1 cup (240ml)",  "",     "mix into oats overnight — ~13g protein"],
+        ["Hard boiled eggs",         "2",              "eggs", "~12g protein, ~10g fat"],
+        ["Blueberries",              "1/2 cup (~75g)", "",     "~11g carbs — no need to weigh"],
+        ["Chia seeds",               "1 tsp (~5g)",    "",     "fiber and omega-3"]
+      ]
+    },
+    { title:"SNACK 1", recipe:"Tuna + Rice Cakes",
+      cal:Math.round(cal*0.10), p:s1P, c:s1C, f:s1F,
+      rows:[
+        ["Canned tuna in water, drained",d3s1TuG+"","g","~25g protein per 100g"],
+        ["Plain rice cakes",             d3s1RcN+" ","cakes","~7g carbs each"],
+        ["Nonfat Greek yogurt",          "2 tbsp (~30g)","","mix with tuna as dressing"],
+        ["Hot sauce or mustard",         "to taste",     "",""]
+      ]
+    },
+    { title:"LUNCH", recipe:"Shrimp + Quinoa + Roasted Peppers",
+      cal:Math.round(cal*0.30), p:lP, c:lC, f:lF,
+      rows:[
+        ["Shrimp, cooked",         d3lShG+"","g","~24g protein per 100g"],
+        ["Quinoa, cooked",         d3lQuG+"","g","~21g carbs per 100g"],
+        ["Bell peppers, roasted",  "1 large (~150g)","","free food — vitamin C"],
+        ["Olive oil, measured",    d3lOiG+"","g","measure carefully"],
+        ["Lemon, garlic, paprika", "to taste",     "",""]
+      ]
+    },
+    { title:"SNACK 2", recipe:"Greek Yogurt + Protein Bar",
+      cal:Math.round(cal*0.10), p:s2P, c:s2C, f:s2F,
+      rows:[
+        ["Nonfat plain Greek yogurt","120",   "g",  "~12g protein"],
+        ["Quest or RX protein bar",  "1 bar", "",   "~21g protein — check label"],
+        ["Berries",                  "handful","",  "optional topping"]
+      ]
+    },
+    { title:"DINNER", recipe:"Chicken Thighs + Brown Rice + Broccoli",
+      cal:Math.round(cal*0.25), p:dP, c:dC, f:dF,
+      rows:[
+        ["Chicken thighs, skinless raw",d3dThG+"","g","~19g protein per 100g raw"],
+        ["Brown rice, cooked",          d3dBrG+"","g","~23g carbs per 100g"],
+        ["Broccoli, roasted",           "1.5 cups (~150g)","","free food — fiber"],
+        ["Olive oil, measured",         d3dOiG+"","g","measure carefully"],
+        ["Soy sauce, garlic, ginger",   "to taste",       "",""]
+      ]
+    }
+  ];
+
+  // ── RENDER ──────────────────────────────────────────────
+  window.switchDay = function(n) {
+    document.querySelectorAll('.day-tab').forEach(function(el,i){ el.classList.toggle('active', i===n-1); });
+    document.querySelectorAll('.day-panel').forEach(function(el,i){ el.classList.toggle('active', i===n-1); });
+  };
+
+  function mealHTML(m) {
+    var h = '<div class="meal"><div class="meal-head"><div>';
+    h += '<div class="meal-title">'+m.title+'</div><div class="meal-recipe">'+m.recipe+'</div>';
+    h += '</div><div class="meal-macros"><strong>~'+m.cal+' kcal</strong>P: ~'+m.p+'g &nbsp; C: ~'+m.c+'g &nbsp; F: ~'+m.f+'g</div></div>';
+    h += '<table><thead><tr><th>Ingredient</th><th>Amount</th><th>Unit</th><th>Note</th></tr></thead><tbody>';
+    m.rows.forEach(function(row){
+      h += '<tr><td class="td-food">'+row[0]+'</td><td class="td-amt">'+row[1]+'</td><td class="td-unit">'+row[2]+'</td><td class="td-note">'+row[3]+'</td></tr>';
+    });
+    return h + '</tbody></table></div>';
   }
 
-  html += '<div class="callout"><p><strong>From Lexi</strong>These portions are your starting point. Weigh your food with a kitchen scale for best accuracy and remember, protein first at every single meal. You have got this.</p></div>';
-  html += '<button class="btn-print" onclick="window.print()">Print or Save as PDF</button>';
-  html += '<div class="brand">THE | MACRO | EDIT &nbsp; allfitnessbylexi@gmail.com &nbsp; @the_macro_edit</div>';
+  function panelHTML(meals, n, active) {
+    var h = '<div class="day-panel'+(active?' active':'')+'" id="panel'+n+'">';
+    meals.forEach(function(m){ h += mealHTML(m); });
+    h += '<div class="callout"><p><strong>From Lexi</strong>These portions are your starting point. Weigh your food with a kitchen scale for best accuracy and remember, protein first at every single meal. You have got this.</p></div>';
+    h += '<button class="btn-outline" onclick="window.print()">Print or Save as PDF</button>';
+    h += '<div style="text-align:center;margin-top:14px;font-size:10px;color:#8fa4b6;">THE | MACRO | EDIT &nbsp; allfitnessbylexi@gmail.com &nbsp; @the_macro_edit</div>';
+    h += '</div>';
+    return h;
+  }
 
-  document.getElementById('out').innerHTML = html;
-  document.getElementById('out').classList.remove('hidden');
+  var macroBar = '<div class="card"><div class="ctitle">Your Daily Targets</div><div class="macro-grid">'
+    + ['#5c2a57','#a895bf','#8fa4b6','#d8a7b1'].map(function(col,i){
+        var labels=['Calories','Protein','Carbs','Fat'], vals=[cal,pro,carb,fat], units=['kcal','g','g','g'];
+        return '<div class="macro-box"><div class="macro-val" style="color:'+col+'">'+vals[i]+'</div><div class="macro-lbl">'+labels[i]+'</div><div class="macro-unit">'+units[i]+'</div></div>';
+      }).join('')
+    + '</div><div class="water">Daily water goal: <strong>'+water+' oz</strong> minimum ('+Math.round(water*29.5)+' ml)</div></div>';
+
+  var tabs = '<div class="day-tabs">'
+    + ['Day 1','Day 2','Day 3'].map(function(l,i){
+        return '<button class="day-tab'+(i===0?' active':'')+'" id="tab'+(i+1)+'" onclick="switchDay('+(i+1)+')">'+l+'</button>';
+      }).join('')
+    + '</div>';
+
+  var out = document.getElementById('menu-out');
+  out.classList.add('hidden');
+  out.innerHTML = macroBar + tabs
+    + panelHTML(day1,1,true) + panelHTML(day2,2,false) + panelHTML(day3,3,false);
+  setTimeout(function(){ out.classList.remove('hidden'); }, 0);
 }
+
+window.onload = function(){ build(); };
 </script>
 </body>
 </html>
